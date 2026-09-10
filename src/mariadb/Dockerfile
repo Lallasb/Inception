@@ -6,10 +6,6 @@ COPY tools/mariadb.sh mariadb.sh
 
 COPY tools/mariadb.conf  /etc/mysql/mariadb.conf.d/50-server.cnf
 
-ENV SQL_DATABASE=my_first_db \
-    SQL_USER=lalla \
-    SQL_PASSWORD=1234 \
-    SQL_ROOT_PASSWORD=12345
 
 RUN chmod +x mariadb.sh
 
