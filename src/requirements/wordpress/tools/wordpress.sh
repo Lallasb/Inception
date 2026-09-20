@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Waiting for MariaDB..."
-sleep 10
+sleep 5
 if [ ! -f /var/www/wordpress/wp-config.php ]; then
 mkdir -p  /var/www/wordpress
 cd /var/www/wordpress

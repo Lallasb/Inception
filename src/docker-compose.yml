@@ -1,9 +1,8 @@
-# version: '3'
+
 services:
   mariadb:
-    build: ./src/mariadb/
+    build: ./requirements/mariadb/
     image: mariadb
-    
     container_name: mariadb
     restart: always
     networks:
@@ -16,7 +15,7 @@ services:
      - mariadb:/var/lib/mysql
 
   nginx: 
-    build: ./src/nginx/
+    build: ./requirements/nginx/
     image: nginx
     container_name: nginx
     depends_on: 
@@ -25,18 +24,17 @@ services:
     networks:
       - inception
     ports:
-      - 8099:443
+      - 443:443
     expose:
       - "443"
     env_file:
       .env
     volumes:
-     - wordpress:/var/www/wordpress
-
+    - wordpress:/var/www/wordpress
+  
   
   wordpress:
-    
-    build: ./src/wordpress/
+    build: ./requirements/wordpress/
     image: wordpress
     container_name: wordpress
     depends_on:
@@ -54,9 +52,20 @@ services:
 
 networks:
   inception:
+    driver: bridge
+    
 
 volumes:
   wordpress:
-
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/login/data/wordpress
   mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/login/data/mariadb
   

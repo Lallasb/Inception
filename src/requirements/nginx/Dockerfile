@@ -10,4 +10,4 @@ RUN openssl req -x509 -nodes -newkey rsa:2048 -out /etc/nginx/ssl/inception.crt 
 
 COPY conf/nginx.conf  /etc/nginx/nginx.conf
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

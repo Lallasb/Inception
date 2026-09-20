@@ -41,7 +41,7 @@ This document explains how to set up, build, and maintain the Inception project 
 
 **`srcs/.env`** — non-sensitive configuration:
 ```dotenv
-DOMAIN_NAME=lasoubai.42.fr
+DOMAIN_NAME=login.42.fr
 SITE_TITLE=Inception
 
 MARIADB_DATABASE=wordpress_db
@@ -99,28 +99,28 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/lasoubai/data/mariadb
+      device: /home/login/data/mariadb
   wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/lasoubai/data/wordpress
+      device: /home/login/data/wordpress
 ```
 
 Both are true Docker named volumes (they appear under `docker volume ls`), but each is backed by a bind mount to a specific host path, so the underlying files are directly visible and inspectable at:
 ```
-/home/lasoubai/data/mariadb/      # MariaDB's data directory
-/home/lasoubai/data/wordpress/    # WordPress site files (themes, plugins, uploads, core)
+/home/login/data/mariadb/      # MariaDB's data directory
+/home/login/data/wordpress/    # WordPress site files (themes, plugins, uploads, core)
 ```
 
 **Persistence behavior:**
 - `docker compose down` (no `-v`) → containers stop, volumes and host data remain untouched.
-- `docker compose down -v` → Docker's volume *references* are removed, but since the volumes are bind-backed, the actual files at `/home/lasoubai/data/` are **not** deleted (this is expected — Docker doesn't own bind-mounted data).
+- `docker compose down -v` → Docker's volume *references* are removed, but since the volumes are bind-backed, the actual files at `/home/login/data/` are **not** deleted (this is expected — Docker doesn't own bind-mounted data).
 - To genuinely wipe the data, the host directories must be cleared manually:
   ```bash
-  sudo rm -rf /home/lasoubai/data/mariadb/*
-  sudo rm -rf /home/lasoubai/data/wordpress/*
+  sudo rm -rf /home/login/data/mariadb/*
+  sudo rm -rf /home/login/data/wordpress/*
   ```
   This is exactly what `make fclean` automates.
 

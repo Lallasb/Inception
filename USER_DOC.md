@@ -41,23 +41,23 @@ make fclean
 
 **Public website:**
 ```
-https://lasoubai.42.fr
+https://login.42.fr
 ```
 
 **Admin panel (WordPress dashboard):**
 ```
-https://lasoubai.42.fr/wp-admin
+https://login.42.fr/wp-admin
 ```
 or directly:
 ```
-https://lasoubai.42.fr/wp-login.php
+https://login.42.fr/wp-login.php
 ```
 
 Your browser will show a security warning the first time, because the site uses a self-signed TLS certificate (normal for a local/school project, not a real-world public certificate). Choose "Advanced" → "Proceed" to continue.
 
-> **Note:** the domain `lasoubai.42.fr` must be pointed at `127.0.0.1` in your machine's `/etc/hosts` file for this to resolve. If the page doesn't load, check that this entry exists:
+> **Note:** the domain `login.42.fr` must be pointed at `127.0.0.1` in your machine's `/etc/hosts` file for this to resolve. If the page doesn't load, check that this entry exists:
 > ```
-> 127.0.0.1   lasoubai.42.fr
+> 127.0.0.1   login.42.fr
 > ```
 
 ## 4. Locating and managing credentials
@@ -83,7 +83,7 @@ All three (`mariadb`, `wordpress`, `nginx`) should show status `Up`, not `Restar
 
 Check the site responds correctly:
 ```bash
-curl -kv https://lasoubai.42.fr
+curl -kv https://login.42.fr
 ```
 A response (even a redirect) confirms NGINX is serving traffic.
 
